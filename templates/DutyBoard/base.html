@@ -1,9 +1,73 @@
 {% load staticfiles %}
 <html>
 	<head>
-		<title>Duty Board</title>
+		<meta charset="UTF-8"/>
+		<title>{% block title %}Duty Board{% endblock %}</title>
+		<link rel="stylesheet" type="text/css" href="{% static 'googlefonts/Material Icons.css' %}"/>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/materialize.min.css' %}"/>
+		{% block css %}
+		{% endblock %}
 	</head>
 	<body>
-		
+		<header>
+			<nav>
+				<div class="nav-wrapper container">
+					<a class="brand-logo center" href="#"> Duty Board </a>
+					<ul class="right ">
+						{% if user.is_authenticated %}
+						<ul id="nav-dropdown" class="dropdown-content">
+							<li><a href="#"> Profile </a></li>
+						    <li><a href="#"> Settings </a></li>
+						    <li class="divider"></li>
+						    <li><a href="{% url 'auth_logout' %}"> Log out </a></li>
+						</ul>
+                        <li><a class="nav-dropdown" href="#" data-activates="nav-dropdown"> username <i class="material-icons right">arrow_drop_down</i></a></li>
+                        {% else %}
+						<li><a href="{% url 'registration_register' %}">Register</a></li>
+						<li><a href="{% url 'auth_login' %}">Log in</a></li>
+                        {% endif %}
+					</ul>
+				</div>
+			</nav>
+		</header>
+		<div class="container">
+			{% block content %}
+			{% endblock %}
+		</div>
+		<footer class="page-footer">
+			<div class="container">
+				<div class="row">
+					<div class="col s8">
+						<h5 class="white-text">
+							something
+						</h5>
+						<ol class="white-text">
+							<li> test1 </li>
+							<li> test2 </li>
+						</ol>
+					</div>
+					<div class="col s4">
+						<h5 class="white-text">
+							Connect
+						</h5>
+						<ul class="white-text">
+							<li><a href="#" class="white-text">Weibo</a></li>
+							<li><a href="#" class="white-text">Wechat</a></li>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+			<div class="footer-copyright">
+				<div class="container">
+					<span>Designed by Gladuo.</span>
+				</div>
+			</div>
+		</footer>
+		<script src="{% static 'js/jquery.js' %}" type="text/javascript" charset="utf-8"></script>
+		<script src="{% static 'js/materialize.min.js' %}" type="text/javascript" charset="utf-8"></script>
+		<script src="{% static 'js/app.js' %}" type="text/javascript" charset="utf-8"></script>
+		{% block js %}
+		{% endblock %}
 	</body>
 </html>

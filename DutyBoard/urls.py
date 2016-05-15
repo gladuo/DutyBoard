@@ -17,11 +17,11 @@ from django.conf.urls import url, include
 from django.contrib import admin
 
 import Event
-import User
+import Staff
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^', include('Event.urls')),
-    url(r'^', include('User.urls')),
+    url(r'^', include('Staff.urls')),
 ]
